@@ -1,0 +1,201 @@
+:root {
+  --primary-color: rgb(4, 87, 102);
+  --primary-color--hover: rgba(4, 87, 102, 0.9);
+  --primary-color--active: rgba(4, 87, 102, 0.6);
+  --primary-white: rgb(240, 240, 240);
+}
+
+html {
+  --10px: 0.625rem;
+  --11px: 0.6875rem;
+  --12px: 0.75rem;
+  --13px: 0.8125rem;
+  --14px: 0.875rem;
+  --15px: 0.9375rem;
+  --16px: 1rem;
+  --17px: 1.0625rem;
+  --18px: 1.125rem;
+  --19px: 1.1875rem;
+  --20px: 1.25rem;
+  --21px: 1.3125rem;
+  --22px: 1.375rem;
+  --23px: 1.4375rem;
+  --24px: 1.5rem;
+  --25px: 1.5625rem;
+  --26px: 1.625rem;
+  --27px: 1.6875rem;
+  --28px: 1.75rem;
+  --29px: 1.8125rem;
+  --30px: 1.875rem;
+  --31px: 1.9375rem;
+  --32px: 2rem;
+}
+
+body {
+  /* background-color: black; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: var(--16px);
+  /* min-width: 100vh; */
+  display: grid;
+  /* makes footer not float if in 3rd position */
+  /* grid-template-rows: auto 1fr auto; */
+  justify-items: center;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 7vw + 1rem, 3rem);
+}
+
+.container {
+  border: 1px solid black;
+  display: grid;
+  width: min(60rem, 95%);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px 30px;
+  /* flex: 1 1 100%;
+  flex-wrap: wrap; */
+}
+
+.hangman-box {
+  flex-grow: 0.4;
+  justify-items: center;
+  /* min-width: 10rem; */
+  flex: 1;
+  border: 1px solid blue;
+}
+
+.hangman-graphic {
+  border: none;
+  /* width: 100%;
+  height: 100%; */
+  /* object-fit: fill; */
+  /* margin: 6px; */
+}
+
+.game-box {
+  flex: 0 0 60%;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  /* flex-grow: 0.6;
+  min-width: 30rem; */
+  border: solid red;
+  width: 100%;
+}
+
+.word-display {
+  font-size: var(--32px);
+  border: 2px none brown;
+  padding: 8px;
+  text-align: center;
+}
+
+.keyboard {
+  background-color: var(--primary-color);
+  border: 1px solid black;
+  text-align: center;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 4px; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+/* .keyboard__keys {
+} */
+
+.keyboard__key {
+  height: 45px;
+  width: 100%;
+  /* max-width: 90px; */
+  min-width: 50px;
+  margin: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  border-radius: 4px;
+  margin: 0px;
+  color: var(--primary-white);
+  font-size: var(--16px);
+  /* for mobile devices when touching keys? */
+  outline: none;
+  cursor: pointer;
+  /* these 3 to center when inserting icons */
+  /* display: inline-flex;
+  align-items: center;
+  justify-content: center; */
+  vertical-align: top; /* in case */
+  flex: 1 1 0;
+}
+
+.keyboard__key:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.keyboard__key:disabled {
+  background: rgba(255, 255, 255, 0.2);
+  cursor: default;
+}
+
+.popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.popup__content {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /* height: clamp(8rem, 30vh + 2rem, 40rem); */
+  height: fit-content;
+  width: fit-content;
+  /* width: clamp(10rem, 40vh + 3rem, 40rem); */
+  padding: 36px 48px;
+}
+
+.reset-button {
+  background-color: var(--primary-color);
+  color: var(--primary-white);
+  font-size: clamp(16px, 1rem, 6rem);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 12px;
+  width: fit-content;
+}
+.reset-button:hover {
+  background-color: var(--primary-color--hover);
+}
+.reset-button:active {
+  background-color: var(--primary-color--active);
+}
+
+@media(max-width: 1000px) {
+  .container {
+    flex-direction: column;
+  }
+
+  /* .hangman-box {
+    border: 1px solid blue;
+  } */
+  
+  .game-box {
+    flex: auto;
+    width: 100%;
+  }
+}

@@ -1,0 +1,23 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="160" height="160" fill="#1E1E1E"/>
+  <g id="Frame 1" clip-path="url(#clip0_0_1)">
+    <rect width="160" height="160" fill="white"/>
+    <rect id="crossbeam" x="145" width="8" height="122" transform="rotate(90 145 0)" fill="#7B5E3D"/>
+    <rect id="crosspiece" x="57.4264" y="2" width="8" height="60" transform="rotate(45 57.4264 2)" fill="#7B5E3D"/>
+    <rect id="pole" x="15" width="8" height="150" fill="#7B5E3D"/>
+    <rect id="base" y="150" width="160" height="10" fill="#167611"/>
+    <rect id="rope" x="115" y="8" width="3" height="18" fill="#B36832"/>
+    <rect id="torso" x="114" y="51" width="5" height="41" fill="#CA994A"/>
+    <circle id="head" cx="116.5" cy="38.5" r="12.5" fill="#CA994A"/>
+    <rect id="right-foot" x="115" y="88.6905" width="4" height="29" transform="rotate(-25 115 88.6905)" fill="#CA994A"/>
+    <rect id="right-arm" x="115" y="52.6905" width="4" height="29" transform="rotate(-25 115 52.6905)" fill="#CA994A"/>
+    <rect id="left-foot" width="4" height="29" transform="matrix(-0.906308 -0.422618 -0.422618 0.906308 117.881 88.6905)" fill="#CA994A"/>
+    <rect id="left-arm" width="4" height="29" transform="matrix(-0.906308 -0.422618 -0.422618 0.906308 117.881 52.6905)" fill="#CA994A"/>
+  </g>
+
+  <defs>
+      <clipPath id="clip0_0_1">
+      <rect width="160" height="160" fill="white"/>
+      </clipPath>
+  </defs>
+</svg>
