@@ -87,6 +87,9 @@ body {
   /* justify-items: center; */
   min-height: 100vh; /* helps push footer to the bottom */
 }
+h2 {
+  color: var(--text);
+}
 nav {
   grid-area: navbar;
   position: sticky;
@@ -271,7 +274,21 @@ footer {
   justify-content: center;
 }
 
-.popup__content {
+dialog {
+  text-align: center;
+  /* position: fixed; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg);
+  border: var(--border-card);
+  border-top: var(--highlight);
+}
+dialog .wrapper {
+  padding: 16px;
+}
+
+.popup-result__container {
   display: flex;
   flex-direction: column;
   text-align: center;

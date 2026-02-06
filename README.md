@@ -32,9 +32,10 @@ Since this is purely to learn JavaScript for myself, just telling me what part o
 
 ## Features to work on
 
-* Offer multiple categories
 * Statistics
-* Hard mode
+* Option to disable keyboard inputs
+* Offer multiple categories
+* Hard mode (fewer lives, right letter only reveals one blank)
 
 > Project status: active (02/2026)
 

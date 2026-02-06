@@ -53,16 +53,37 @@
     </div>
   
     <div class="popup__overlay js-popup-result">
-      <div class="popup__content">
-        <h2 class="popup__message js-popup-result__message"></h2>
+      <div class="popup-result__container">
+        <h2 class="popup-result__message js-popup-result__message"></h2>
         <p class="word-reveal js-popup-result__word-reveal"></p>
         <button class="reset-button js-reset-button">Reset</button>
       </div>
     </div>
-  </main>
 
-  <footer>Footer</footer>
+  </main>
   
+  <footer>Footer</footer>
+
+  <dialog id="popup-help">
+    <div class="wrapper">
+      <h2>Help</h2>
+      <button type="button" class="popup-help__close-button">Close</button>
+    </div>
+  </dialog>
+  
+  <dialog id="popup-statistics">
+    <div class="wrapper">
+      <h2>Statistics</h2>
+      <button type="button" class="popup-statistics__close-button">Close</button>
+    </div>
+  </dialog>
+
+  <dialog id="popup-settings">
+    <div class="wrapper">
+      <h2>Settings</h2>
+      <button type="button" class="popup-settings__close-button">Close</button>
+    </div>
+  </dialog>
 </body>
 </html>
 

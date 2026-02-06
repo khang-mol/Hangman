@@ -3,6 +3,9 @@ import { renderNavbar } from "./navbar.js";
 
 renderNavbar();
 
+/**
+ * @type {Array<string>}
+ */
 let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
         't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -30,13 +33,18 @@ function getRandomWord(max = wordList.length, min = 0) {
 };
 
 /**
+ * @callback arrayCallback
+ * @param {Event} e - Passes event (usually click) to callback function.
+ */
+
+/**
  * Wrapper function for simpler eventListeners.
  * @param {string} type click, keydown...
  * @param {string} selector classname, idname,...
- * @param {() => {}} callback Callback function.
- * @param {Document} parent Object from class Document, usually just 'document'.
+ * @param {arrayCallback} callback Callback function.
+ * @param {Document} parent Object from class Document, default: 'document'.
  */
-function addGlobalEventListener(type, selector, callback, parent = document) {
+export function addGlobalEventListener(type, selector, callback, parent = document) {
   parent.addEventListener(type, e => {
     if (e.target.matches(selector)) {
       callback(e);
@@ -45,14 +53,14 @@ function addGlobalEventListener(type, selector, callback, parent = document) {
 };
 
 // Closes popup when clicking outside of the window.
-addGlobalEventListener('click', '.popup__overlay', e => {
+addGlobalEventListener("click", '.popup__overlay', e => {
   e.target.style.display = 'none';
 });
 
 // Toggles sidebar by clicking the toggler.
-addGlobalEventListener('click', '.js-navbar__sidebar-toggler', e => {
+addGlobalEventListener("click", '.js-navbar__sidebar-toggler', () => {
   const sidebar = document.querySelector('.js-sidebar');
-  sidebar.classList.toggle('show');
+  sidebar?.classList.toggle('show');
 });
 
 
@@ -61,7 +69,7 @@ let lightmode = localStorage.getItem('lightmode');
 if (lightmode === 'true') {
   document.body.classList.add('light');
 };
-addGlobalEventListener('click', '.js-dark-mode-toggler', () => {
+addGlobalEventListener("click", '.js-dark-mode-toggler', () => {
   document.body.classList.toggle('light');
   lightmode === 'true'
     ? localStorage.setItem('lightmode', 'false')
@@ -126,10 +134,10 @@ function playGame() {
     pressKey(button, letter);
   });
 
-  addGlobalEventListener('click', '.js-keyboard__key', e => {
+  addGlobalEventListener("click", '.js-keyboard__key', e => {
     // e.target.classList.toggle('new-class');
     const button = e.target;
-    const letter = button.textContent;
+    const letter = button?.textContent;
     
     pressKey(button, letter);
 
@@ -144,7 +152,7 @@ function playGame() {
       button.textContent = letter;
       button.classList.add('keyboard__key', 'js-keyboard__key', `js-keyboard__key-${letter}`);
   
-      buttonsAll.appendChild(button);
+      buttonsAll?.appendChild(button);
     };
   };
   
@@ -155,9 +163,9 @@ function playGame() {
     wordDisplay.textContent = displayArray.join(' ');
     document.getElementById('Frame 1').innerHTML = hangmanHTML;
     if (!displayArray.includes('_')) {
-      displayPopup('You won!');
+      displayResultPopup('You won!');
     } else if (wrongGuessCounter >= hangmanComponents.length) 
-    { displayPopup('You lost!');
+    { displayResultPopup('You lost!');
     };
   };
   
@@ -172,7 +180,7 @@ function playGame() {
   };
   
   document.querySelector('.js-reset-button')
-    .addEventListener('click', () => {
+    .addEventListener("click", () => {
       resetGame();
     });
 
@@ -190,7 +198,7 @@ function playGame() {
    * At the end of the game, a popup appears with a message and the word.
    * @param {string} message Winning/Losing message to be displayed
    */
-  function displayPopup(message) {
+  function displayResultPopup(message) {
     document.querySelectorAll('.js-keyboard__key')
       .forEach(button => button.disabled = true);
 
