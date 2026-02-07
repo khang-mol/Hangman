@@ -1,4 +1,4 @@
-import { addGlobalEventListener } from "./main.js";
+import { addGlobalEventListener, loadStatisticsFromStorage, statistics } from "./main.js";
 
 export function renderNavbar() {
   let navbarHTML = `
@@ -29,10 +29,42 @@ export function renderNavbar() {
   `;
 
   document.querySelector('.js-navbar').innerHTML = navbarHTML;
+
+
+  // Toggles sidebar by clicking the toggler.
+  addGlobalEventListener("click", '.js-navbar__sidebar-toggler', () => {
+    const sidebar = document.querySelector('.js-sidebar');
+    sidebar?.classList.toggle('show');
+  });
+
+
+  // Theme toggler.
+  let lightmode = localStorage.getItem('lightmode');
+  if (lightmode === 'true') {
+    document.body.classList.add('light');
+  };
+  addGlobalEventListener("click", '.js-dark-mode-toggler', () => {
+    document.body.classList.toggle('light');
+    lightmode === 'true'
+      ? localStorage.setItem('lightmode', 'false')
+      : localStorage.setItem('lightmode', 'true');
+    lightmode = localStorage.getItem('lightmode');
+  });
 };
+
+
 
 export function createPopups() {
   let popupsHTML = `
+  <dialog class="popup__overlay" id="popup-result">
+    <!-- <div class="popup-result__container"> -->
+    <div class="popup-result__container js-popup-result__container">
+      <h2 class="popup-result__message js-popup-result__message"></h2>
+      <p class="word-reveal js-popup-result__word-reveal"></p>
+      <button type="button" class="reset-button js-reset-button">Reset</button>
+    </div>
+  </dialog>
+  
   <dialog class="navbar__popup" id="popup-help">
     <div class="wrapper js-wrapper-help">
       <h2>Help</h2>
@@ -41,13 +73,7 @@ export function createPopups() {
   </dialog>
     
   <dialog class="navbar__popup" id="popup-statistics">
-    <div class="wrapper js-wrapper-statistics">
-      <h2>Statistics</h2>
-      <!-- <button type="button" class="popup-statistics__close-button">Close</button> -->
-
-      <div class="popup-statistics__statistics" alt="Won:">Played</div>
-
-      <div class="popup-statistics__guess-distribution">Guess distribution</div>
+    <div class="wrapper wrapper-statistics js-wrapper-statistics">
     </div>
   </dialog>
 
@@ -61,10 +87,6 @@ export function createPopups() {
 
   document.querySelector('.popups').innerHTML = popupsHTML;
   
-  // const AllPopups = document.querySelectorAll(".navbar__popup");
-  // AllPopups.forEach(popup => {
-  //   easyClosePopup(popup);
-  // });
 
   /**
    * Enables the closing of popup windows by clicking outside the window.
@@ -76,17 +98,18 @@ export function createPopups() {
   };
   
   
-  const statisticsPopup = document.getElementById("popup-statistics");
-  const statisticsWrapper = document.querySelector('.js-wrapper-statistics');
   addGlobalEventListener("click", ".js-statistics-popup", () => {
+    const statisticsPopup = document.getElementById("popup-statistics");
+    const statisticsWrapper = document.querySelector('.js-wrapper-statistics');
+    renderStatistics();
     statisticsPopup.showModal();
+    easyClosePopup(statisticsPopup, statisticsWrapper);
   });
 
   // addGlobalEventListener("click", ".popup-statistics__close-button", () => {
   //   statisticsPopup.close();
   // });
 
-  easyClosePopup(statisticsPopup, statisticsWrapper);
 
 
   const helpPopup = document.getElementById("popup-help");
@@ -109,4 +132,36 @@ export function createPopups() {
   //   settingsPopup.close();
   // });
   easyClosePopup(settingsPopup, settingsWrapper);
+};
+
+export function renderStatistics() {
+  const statisticsWrapper = document.querySelector('.js-wrapper-statistics');
+  statisticsWrapper.innerHTML = `
+  <h2>Statistics</h2>
+  <!-- <button type="button" class="popup-statistics__close-button">Close</button> -->
+
+  <div class="statistics-display js-popup-statistics__statistics"></div>
+
+  <div class="popup-statistics__guess-distribution">
+    Guess distribution
+  </div>  
+  `;
+
+  loadStatisticsFromStorage();
+
+
+  let statisticsHTML = '';
+
+  Object.entries(statistics).forEach(statistic => {
+    const statisticObject = statistic[1];
+    statisticsHTML += `
+      <div class="stats-column">
+        <div class="stats-num">${statisticObject.number}</div>
+        <div class="stats-label">${statisticObject.label}</div>
+      </div>
+    `;
+  });
+
+  document.querySelector('.js-popup-statistics__statistics')
+    .innerHTML = statisticsHTML;
 };
