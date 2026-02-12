@@ -11,7 +11,7 @@ While functional, this project is still in the works as my first ever (non-one-t
 
 Will be posted if my project gains any substance.
 
-![Hangman graphic](/images/hangman.svg)
+![Hangman graphic](/images/Hangman_Demo.png)
 
 ## How to install this JavaScript project
 
