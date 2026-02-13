@@ -31,11 +31,11 @@ export let newStatistics = {
   },
   currentStreak: {
     number: 0,
-    label: 'Current<br>Streak',
+    label: 'Current\nStreak',
   },
   maxStreak: {
     number: 0,
-    label: 'Max<br>Streak',
+    label: 'Max\nStreak',
   },
 };
 
