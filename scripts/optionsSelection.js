@@ -122,7 +122,7 @@ export async function renderOptionSelection() {
    */
   async function getCategoryJSON(category) {
     try {
-      const myRequest = new Request(`scripts/data/${category}.json`);
+      const myRequest = new Request(`./scripts/data/${category}.json`);
       const response = await fetch(myRequest);
       const data = await response.json();
       return data;
