@@ -39,7 +39,7 @@ Since this is purely to learn JavaScript for myself, just telling me what part o
 * Option to disable keyboard inputs
 * Hard mode (fewer lives, right letter only reveals one blank)
 
-> Project status: mostly done (02/2026)
+> Project status: done, but I may improve it if I see fit (02/2026)
 
 ## Known Issues
 
