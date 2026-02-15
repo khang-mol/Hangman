@@ -88,6 +88,13 @@ body {
   /* justify-items: center; */
   min-height: 100vh; /* helps push footer to the bottom */
 }
+/* body.no-sidebar {
+  grid-template-areas:
+    "navbar navbar"
+    "main main"
+    "footer footer";
+  grid-template-columns: 1fr;
+} */
 nav {
   grid-area: navbar;
   position: sticky;
@@ -137,9 +144,9 @@ main {
 
 .hangman-container {
   /* border: 1px solid black; */
-  display: grid;
   width: min(60rem, 95%);
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   flex-direction: row;
   gap: 10px 30px;
@@ -150,10 +157,10 @@ main {
 }
 
 .hangman-box {
-  flex-grow: 0.4;
+  /* flex-grow: 0.4; */
   justify-items: center;
-  /* min-width: 10rem; */
-  flex: 1;
+  min-width: 10rem;
+  /* flex: 1; */
   border: 1px solid var(--border);
   /* border-top: 1px solid var(--highlight); */
   border-radius: 8px;
@@ -250,22 +257,33 @@ main {
   cursor: default;
 }
 
-@media(max-width: 1000px) {
+/* This was max-width: 1000px */
+@media(orientation: portrait) {
   .hangman-container {
     flex-direction: column;
   }
 
-  /* .hangman-box {
-    border: 1px solid blue;
-  } */
-  
   .game-box {
     flex: auto;
     width: 100%;
   }
 }
 
-@media(max-width: 800px) {
+@media (orientation: landscape) {
+  body {
+    grid-template-columns: auto 1fr;
+  }
+  aside {
+    display: none;
+    position: fixed;
+    /* grid-template-rows: 1fr; */
+  }
+  .show {
+    display: block;
+  }
+}
+
+@media(max-width: 818px) {
   body {
     grid-template-columns: 1fr;
   }

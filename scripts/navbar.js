@@ -8,6 +8,7 @@ export function renderNavbar() {
   addGlobalEventListener("click", '.js-navbar__sidebar-toggler', () => {
     const sidebar = document.querySelector('.js-sidebar');
     sidebar?.classList.toggle('show');
+    // document.body.classList.toggle('no-sidebar');
   });
 
 
